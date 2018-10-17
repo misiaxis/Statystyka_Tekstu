@@ -92,8 +92,10 @@ namespace Statystyka_Tekstu
                     StatOutput.Text += Environment.NewLine + "[" + pair.Key + "] '" + "SPACE" +
                                        "' wystąpień: " + pair.Value;
                 else
-                StatOutput.Text += Environment.NewLine + "[" + pair.Key + "] '" + Convert.ToChar(pair.Key) +
+                    StatOutput.Text += Environment.NewLine + "[" + pair.Key + "] '" + Convert.ToChar(pair.Key) +
                                    "' wystąpień: " + pair.Value;
+
+                StatOutput.Text += " procentowo " + (float)pair.Value / (float)fulltext.Length + "%";
             }
 
 

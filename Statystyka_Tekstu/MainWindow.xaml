@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Statystyka_Tekstu"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="310.4">
     <Grid>
         <Button x:Name="Readfile" Content="Wczytaj plik tekstowy" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="149" Click="Readfile_Click"/>
         <Button x:Name="StartButton" Content="Oblicz statystykę" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="190,10,0,0" Click="StartButton_Click"/>
