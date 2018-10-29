@@ -48,7 +48,7 @@ namespace Statystyka_Tekstu
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
             string fulltext = File.ReadAllText(filepath);
-            StatOutput.Text = "Długość tekstu " + fulltext.Length + " znaków";
+            
 
             int maxchar = 0;
 
@@ -57,8 +57,7 @@ namespace Statystyka_Tekstu
                 if (c > maxchar) maxchar = c;
             }
 
-            StatOutput.Text += Environment.NewLine + "Kod najwyższego znaku " + maxchar;
-            if (maxchar > 255) StatOutput.Text += " kodowanie UTF-8";
+            
 
             char[] chars=new char[maxchar+1];
 
@@ -79,6 +78,17 @@ namespace Statystyka_Tekstu
                 orderby pair.Value descending 
                 select pair;
 
+            double entropia = 0;
+            double charscount = 0;
+
+            foreach (KeyValuePair<int, int> pair in items)
+            {
+                charscount += pair.Value;
+            }
+            StatOutput.Text = "Długość tekstu " + charscount + " znaków";
+            StatOutput.Text += Environment.NewLine + "Kod najwyższego znaku " + maxchar;
+            if (maxchar > 255) StatOutput.Text += " kodowanie UTF-8";
+
             foreach (KeyValuePair<int, int> pair in items)
             {
                 if(pair.Key==10)
@@ -95,10 +105,12 @@ namespace Statystyka_Tekstu
                     StatOutput.Text += Environment.NewLine + "[" + pair.Key + "] '" + Convert.ToChar(pair.Key) +
                                    "' wystąpień: " + pair.Value;
 
-                StatOutput.Text += " procentowo " + (float)pair.Value / (float)fulltext.Length + "%";
+                StatOutput.Text += " procentowo " + 100*(float)pair.Value / charscount + "%";
+                entropia -= ((double)pair.Value / charscount)*Math.Log((double) pair.Value / charscount, 2);
             }
 
-
+            StatOutput.Text = "Entropia (P) " + entropia + " bitów" + Environment.NewLine + StatOutput.Text;
+            StatOutput.Text = "Entropia " + Math.Log(dictionary.Count,2) + " bitów" + Environment.NewLine + StatOutput.Text;
         }
     }
 }
