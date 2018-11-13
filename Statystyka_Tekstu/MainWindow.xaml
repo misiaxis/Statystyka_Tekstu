@@ -3,13 +3,35 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Statystyka_Tekstu"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="314.192">
+        Title="MainWindow" Height="750" Width="315">
+    <TabControl>
+        <TabItem Header="Wejście">
+            <Grid>
+            <Button Content="Wczytaj z pliku" Height="50" VerticalAlignment="Top" Click="WczytajPlik"/>
+            <TextBox x:Name="InputText" TextWrapping="Wrap" Margin="0,50,0,0"/>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Entropia">
     <Grid>
-        <Button x:Name="Readfile" Content="Wczytaj plik tekstowy" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="149" Click="Readfile_Click"/>
-        <Button x:Name="StartButton" Content="Oblicz statystykę" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="186,10,0,0" Click="StartButton_Click"/>
-        <TextBox x:Name="StatOutput" HorizontalAlignment="Left" Height="374" Margin="10,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="286"/>
+    <TextBox x:Name="StatOutput" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" VerticalAlignment="Stretch"  HorizontalAlignment="Stretch" Width="286" Loaded="StatOutput_Loaded"/>
 
     </Grid>
+     </TabItem>
+        <TabItem Header="Kompresja LZSS" Loaded="LZSSloaded">
+            <Grid>
+                <Button Content="Wczytaj z pliku" Height="50" VerticalAlignment="Top" Click="WczytajPlik"/>
+                <TextBox x:Name="LZSSout" TextWrapping="Wrap" Margin="0,50,0,50"></TextBox>
+                <Button Height="50" VerticalAlignment="Bottom" Content="Zapisz plik" Click="Button_Click" Margin="0,0,50,0"></Button>
+                <TextBox Name="stopienkompresji" Width="50" Height="50" HorizontalAlignment="Right" VerticalAlignment="Bottom" TextAlignment="Center" FontSize="36"></TextBox>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Dekompresja LZSS">
+            <Grid>
+                <Button Content="Wczytaj z pliku" Height="50" VerticalAlignment="Top" Click="WczytajDoLZSS"/>
+                <TextBox x:Name="DecompressedText" TextWrapping="Wrap" Margin="0,50,0,50"/>
+                <Button Content="Zapisz do pliku" Height="50" VerticalAlignment="Bottom" Click="ZapiszDoPliku"/>
+            </Grid>
+        </TabItem>
+    </TabControl>
 </Window>
